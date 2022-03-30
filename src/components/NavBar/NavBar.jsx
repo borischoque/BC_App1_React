@@ -14,6 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 
 // Imagen LOGO
 import logoNatura from './natura.svg'
+// IMPORTACION DE COMPONENTE CARTWIDGET
+import CartWidget from '../CartWidget/CartWidget';
 
 const pages = ['CONTACTO', 'STOCK','PRODUCTOS','PRINCIPAL'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -122,6 +124,7 @@ const NavBar = () => {
                 </Button>
                 ))}
             </Box>
+            <CartWidget />
 {/* se comenta el siguiente tramo de código para ajustar el NavBar al proyecto personal */}
 {/* 
           <Box sx={{ flexGrow: 0 }}>
