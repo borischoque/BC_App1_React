@@ -1,29 +1,42 @@
-import React from 'react';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import ItemCount from '../ItemCount/ItemCount';
+import React, { useEffect, useState } from 'react';
+import ItemList from '../ItemList/ItemList';
 
-const ItemListContainer = ({message}) => {
+const ItemListContainer = () => {
 
-  const onAdd = (value) => {
-    console.log(`Se envia al carrito el valor ${value} Unidades para realizar la compra.`);
-  }
+  // const onAdd = (value) => {
+  //   console.log(`Se envia al carrito el valor ${value} Unidades para realizar la compra.`);
+  // }
+  // DEFINO EL ESTADO DE PRODUCTOS
+  const [products, Setproducts] = useState([]);
+  
+  // DEFINO LA LISTA DE PRODUCTOS
+  const productos = [
+    {id:1, title: 'Perfume', description: 'Aroma Especial, oferta de la semana',src:'https://mui.com/static/images/cards/paella.jpg'},
+    {id:2, title: 'Desodorante', description: 'NO tiene oferta',src:'https://mui.com/static/images/cards/paella.jpg'},
+    {id:3, title: 'Producto 3', description: 'NO tiene oferta',src:'https://mui.com/static/images/cards/paella.jpg'},
+    {id:4, title: 'Producto 4', description: 'NO tiene oferta',src:'https://mui.com/static/images/cards/paella.jpg'},
+    {id:5, title: 'Producto 5', description: 'NO tiene oferta',src:'https://mui.com/static/images/cards/paella.jpg'}
+  ]
 
+  useEffect(() => {
+
+    const tarea = new Promise((resolve,reject) => {
+
+    setTimeout(() => {
+        resolve(productos);
+      }, 4000)
+
+    });
+
+    tarea.then((res) => {
+      Setproducts(res)
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, []);
+  
   return (
-    <Grid container spacing={4}>
-          <Grid item xs={12} sm={4}>
-            <Container sx={{ my: 2, borderRadius:10, borderStyle:'solid',}}>
-                <Typography>
-                  {message}
-                </Typography>
-                <ItemCount stock={4} initial={0} onAdd={onAdd} />
-                <br />
-                <ItemCount stock={10} initial={0} onAdd={onAdd} />
-            </Container>
-          </Grid>
-      </Grid>
+    <ItemList listproductos={products}/>
   )
 }
 
