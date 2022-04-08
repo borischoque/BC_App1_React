@@ -3,12 +3,25 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import { purple } from '@mui/material/colors';
+import { styled } from '@mui/material/styles';
 
-const ItemCount = ({stock,initial,onAdd}) => {
+// BOTON PERSONALIZADO
+const ColorButton = styled(Button)(({ theme }) => ({
+    height:50,
+    widht:50,
+    backgroundColor: purple[500],
+    '&:hover': {
+      backgroundColor: purple[700],
+    },
+  }));
+
+
+const ItemCount = ({stk,initial}) => {
 
     // Seteo de estados
     const [initialValue, SetinitialValue] = useState(initial);
-    const [stockValue, SetstockValue] = useState(stock);
+    const [stockValue, SetstockValue] = useState(stk);
     
     // Funciones Auxiliares
     // Función para aumentar la cantidad de compra
@@ -30,28 +43,28 @@ const ItemCount = ({stock,initial,onAdd}) => {
 
     return (
         
-        <Container sx={{backgroundColor: 'red', opacity:0.7,}}>
+        <Container>
             
-            <Typography variant="h4">
+            <Typography variant="h5">
             {`STOCK DE PRODUCTO: ${stockValue} uni`}
             </Typography>
-            <Box sx={{mt:1, display:'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white',}}>
-                <Button onClick={ () => {lessCant()}} size="small" variant="contained">
-                    <Typography variant="h4">
+            <Box sx={{mt:1, widht: 200, display:'flex' ,justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white',}}>
+                <ColorButton onClick={ () => {lessCant()}} size="small" variant="contained">
+                    <Typography variant="h3">
                         -
                     </Typography>
-                </Button>
-                <Typography variant="h4">
+                </ColorButton>
+                <Typography variant="h5">
                     {`${initialValue} Uni.`}
                 </Typography>
-                <Button onClick={ () => {addCant()}} size="small" variant="contained">
-                    <Typography variant="h4">
+                <ColorButton onClick={ () => {addCant()}} size="small" variant="contained">
+                    <Typography variant="h3">
                         +
                     </Typography>
-                </Button>
+                </ColorButton>
             </Box>
             <Box sx={{mt:1, display:'flex', alignItems: 'center',justifyContent: 'center'}}>
-                <Button onClick={ () =>{ onAdd(initialValue) }} size="small" variant="contained">
+                <Button size="small" variant="contained">
                         <Typography variant="h6">
                             Agregar al carrito
                         </Typography>

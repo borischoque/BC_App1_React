@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import functionPromise from '../../functions/functionPromise';
 import ItemList from '../ItemList/ItemList';
 
 const ItemListContainer = () => {
@@ -20,15 +21,7 @@ const ItemListContainer = () => {
 
   useEffect(() => {
 
-    const tarea = new Promise((resolve,reject) => {
-
-    setTimeout(() => {
-        resolve(productos);
-      }, 4000)
-
-    });
-
-    tarea.then((res) => {
+    functionPromise(productos,2000).then((res) => {
       Setproducts(res)
     }).catch((err) => {
       console.log(err);
