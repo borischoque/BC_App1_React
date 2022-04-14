@@ -12,6 +12,7 @@ import { deepPurple } from '@mui/material/colors';
 import ShareIcon from '@mui/icons-material/Share';
 import CardMedia from '@mui/material/CardMedia';
 import { styled } from '@mui/material/styles';
+import {Link as RouterLink} from 'react-router-dom';
 
 
 const bull = (
@@ -23,32 +24,27 @@ const bull = (
     </Box>
   );
 
-const Item = ({title,description,imageSrc}) => {
+const Item = ({title,letra,imageSrc,id}) => {
 
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ maxWidth: 300, backgroundColor:'#ebe1d9', mx:'auto'}}>
         <CardHeader
             avatar={
-              <Avatar sx={{ bgcolor: deepPurple[500] }}>P</Avatar>
+              <Avatar sx={{ bgcolor: deepPurple[500] }}>{letra}</Avatar>
             }
-            action={
-                <IconButton aria-label="settings">
-                <ShareIcon />
-                </IconButton>
-            }
-            title={title}
-            // subheader={subTitle}
+
+            titleTypographyProps={{variant:'h5' }}
+            title={title.toUpperCase()}
         />
-        <CardMedia style={{height: 150}} image={imageSrc}/>
-        <CardContent>
-            <Typography variant="body2">
-            {description}
-            <br />
-            </Typography>
-        </CardContent>
+        <CardMedia style={{height: 200, width: 200}} image={imageSrc}/>
         <CardActions>
-            <Button size="small">BUY NOW</Button>
-            <Button size="small">OFFER</Button>
+            <Button 
+              size="small"
+              component={RouterLink}
+              to={`/item/${id}`}
+            >
+              VER DETALLE DE PRODUCTO
+            </Button>
         </CardActions>
     </Card>
   )

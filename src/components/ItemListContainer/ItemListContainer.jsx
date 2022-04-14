@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import functionPromise from '../../functions/functionPromise';
+import functionPromiseFilter from '../../functions/functionPromise';
 import ItemList from '../ItemList/ItemList';
+import {useParams} from "react-router-dom";
+import { productos } from '../../functions/listProducts';
 
 const ItemListContainer = () => {
+
+  const {categoryid} = useParams();
 
   // const onAdd = (value) => {
   //   console.log(`Se envia al carrito el valor ${value} Unidades para realizar la compra.`);
@@ -10,23 +14,16 @@ const ItemListContainer = () => {
   // DEFINO EL ESTADO DE PRODUCTOS
   const [products, Setproducts] = useState([]);
   
-  // DEFINO LA LISTA DE PRODUCTOS
-  const productos = [
-    {id:1, title: 'Perfume', description: 'Aroma Especial, oferta de la semana',src:'https://mui.com/static/images/cards/paella.jpg'},
-    {id:2, title: 'Desodorante', description: 'NO tiene oferta',src:'https://mui.com/static/images/cards/paella.jpg'},
-    {id:3, title: 'Producto 3', description: 'NO tiene oferta',src:'https://mui.com/static/images/cards/paella.jpg'},
-    {id:4, title: 'Producto 4', description: 'NO tiene oferta',src:'https://mui.com/static/images/cards/paella.jpg'},
-    {id:5, title: 'Producto 5', description: 'NO tiene oferta',src:'https://mui.com/static/images/cards/paella.jpg'}
-  ]
+  const listaproductos = productos;
 
   useEffect(() => {
 
-    functionPromise(productos,2000).then((res) => {
+    functionPromiseFilter(listaproductos,1000,categoryid).then((res) => {
       Setproducts(res)
     }).catch((err) => {
       console.log(err);
     })
-  }, []);
+  }, [categoryid]);
   
   return (
     <ItemList listproductos={products}/>

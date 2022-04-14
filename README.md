@@ -1,3 +1,13 @@
+# proyecto_ch_bchoque
+
+## **Descripción:**
+
+En este proyecto se aplica React Js para la creación de un e-commerce.
+
+## **Resumen:**
+
+En esta primer etapa, el proyecto consta de una web dedicada a la oferta/ventas de productos, donde se indica una clasificación según tipo de producto ofrecido.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

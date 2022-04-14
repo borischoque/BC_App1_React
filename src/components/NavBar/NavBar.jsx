@@ -11,13 +11,14 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import {Link as RouterLink} from 'react-router-dom';
 
 // Imagen LOGO
 import logoNatura from './natura.svg'
 // IMPORTACION DE COMPONENTE CARTWIDGET
 import CartWidget from '../CartWidget/CartWidget';
 
-const pages = ['CONTACTO', 'STOCK','PRODUCTOS','PRINCIPAL'];
+const pages = ['PERFUME', 'JABON','DESODORANTE'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
@@ -119,10 +120,22 @@ const NavBar = () => {
                             fontWeight:'bold', bgcolor: '#e9b587',
                             borderRadius:10, borderStyle:'solid',
                             fontSize:20, marginLeft: 2, marginRight:2,}}
+                    component={RouterLink}
+                    to={`/category/${page.toLowerCase()}`}
                 >
                     {page}
                 </Button>
                 ))}
+                <Button
+                  sx={{ my: 2, color: '#555', display: 'block',
+                  fontWeight:'bold', bgcolor: '#e9b587',
+                  borderRadius:10, borderStyle:'solid',
+                  fontSize:20, marginLeft: 2, marginRight:2,}}
+                  component={RouterLink}
+                  to={'/'}
+                >
+                  HOME
+                </Button>
             </Box>
             <CartWidget />
 {/* se comenta el siguiente tramo de código para ajustar el NavBar al proyecto personal */}

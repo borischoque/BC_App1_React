@@ -7,13 +7,14 @@ import Container from '@mui/material/Container';
 
 const ItemList = ({listproductos}) => {
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={4}>
       {listproductos.map(prod =>
-        <Grid key={prod.id} item xs={12} lg={4} md={6} sm={6}>
+        <Grid sx={{ mx:'auto'}} key={prod.id} item xs={12} lg={4} md={6} sm={6}>
                 <Item
-                title={prod.title}
-                description={prod.description}
+                title={prod.category}
+                letra={prod.letter}
                 imageSrc={prod.src}
+                id={prod.id}
                 />
         </Grid>
       )}

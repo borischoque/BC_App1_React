@@ -15,7 +15,7 @@ import ItemCount from '../ItemCount/ItemCount';
 
 const ItemDetail = ({item}) => {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ maxWidth: 350, backgroundColor:'#ebe1d9', mx:'auto'}}>
         <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: deepPurple[500] }}>P</Avatar>
@@ -25,11 +25,12 @@ const ItemDetail = ({item}) => {
                 <ShareIcon />
                 </IconButton>
             }
+            sx={{textTransform: 'uppercase'}}
             titleTypographyProps={{variant:'h4' }}
-            title={item.title}
+            title={item.category}
 
         />
-        <CardMedia style={{height: 150}} image={item.src}/>
+        <CardMedia style={{height: 250, width: 250}} image={item.src}/>
         <CardContent>
             <Typography variant="h5">
             {item.description}
