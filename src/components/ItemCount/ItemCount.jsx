@@ -17,7 +17,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
   }));
 
 
-const ItemCount = ({stk,initial}) => {
+const ItemCount = ({stk,initial,cant}) => {
 
     // Seteo de estados
     const [initialValue, SetinitialValue] = useState(initial);
@@ -64,7 +64,7 @@ const ItemCount = ({stk,initial}) => {
                 </ColorButton>
             </Box>
             <Box sx={{mt:1, display:'flex', alignItems: 'center',justifyContent: 'center'}}>
-                <Button size="small" variant="contained">
+                <Button onClick={ () => {cant(initialValue)}} size="small" variant="contained">
                         <Typography variant="h6">
                             Agregar al carrito
                         </Typography>
