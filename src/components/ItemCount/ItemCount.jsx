@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React,{useState} from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -17,7 +17,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
   }));
 
 
-const ItemCount = ({stk,initial,cant}) => {
+const ItemCount = ({product,stk,initial,cant}) => {
 
     // Seteo de estados
     const [initialValue, SetinitialValue] = useState(initial);
@@ -45,7 +45,7 @@ const ItemCount = ({stk,initial,cant}) => {
         
         <Container>
             
-            <Typography variant="h5">
+            <Typography variant="h6">
             {`STOCK DE PRODUCTO: ${stockValue} uni`}
             </Typography>
             <Box sx={{mt:1, widht: 200, display:'flex' ,justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white',}}>
@@ -64,7 +64,12 @@ const ItemCount = ({stk,initial,cant}) => {
                 </ColorButton>
             </Box>
             <Box sx={{mt:1, display:'flex', alignItems: 'center',justifyContent: 'center'}}>
-                <Button onClick={ () => {cant(initialValue)}} size="small" variant="contained">
+                <Button onClick={ () => {
+                    cant({...product,initialValue})
+                    }
+                } 
+                    size="small" 
+                    variant="contained">
                         <Typography variant="h6">
                             Agregar al carrito
                         </Typography>

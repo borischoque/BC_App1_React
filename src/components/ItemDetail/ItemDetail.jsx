@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import Box from '@mui/material/Box';
+import React, { useContext } from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -13,27 +11,20 @@ import ShareIcon from '@mui/icons-material/Share';
 import CardMedia from '@mui/material/CardMedia';
 import ItemCount from '../ItemCount/ItemCount';
 import {Link as RouterLink} from 'react-router-dom';
+import { CartContext } from '../CartContext/CartContext';
 
 const ItemDetail = ({item}) => {
 
-// Estado que controla que aparezca ó desaparezca el componente ItemCount
-const [appear,Setappear] = useState(true)
-// Estado que guarda la cantidad de compra por producto
-const [cantidad, Setcantidad] = useState(0)
+// Declaramos que contexto vamos a usar
+const {AddToCart,cart} = useContext(CartContext)
 
-// función que se pasa al componente Count
-const add = (cantCompra) => {
-  Setcantidad(cantCompra)
-  Setappear(false)
-}
-
-console.log(cantidad);
+// console.log(cantidad);
 
   return (
     <Card sx={{ maxWidth: 350, backgroundColor:'#ebe1d9', mx:'auto'}}>
         <CardHeader
             avatar={
-              <Avatar sx={{ bgcolor: deepPurple[500] }}>P</Avatar>
+              <Avatar sx={{ bgcolor: deepPurple[500] }}>{item.letter}</Avatar>
             }
             action={
                 <IconButton aria-label="settings">
@@ -45,24 +36,26 @@ console.log(cantidad);
             title={item.category}
 
         />
-        <CardMedia style={{height: 250, width: 250}} image={item.src}/>
+        <CardMedia style={{height: 200, width: 200}} image={item.src}/>
         <CardContent>
             <Typography variant="h5">
             {item.description}
             </Typography>
         </CardContent>
-        {
-          (appear) ? (<ItemCount stk={item.stock} initial={0} cant={add}/>) : 
-          (<Button 
-          size="small" 
-          variant="contained"
-          component={RouterLink}
-          to={`/cart`}
-          >
-            <Typography variant="h6">
-                Ir al carrito
-            </Typography>
-          </Button>)
+        <ItemCount product={item} 
+        stk={(item.stock)} 
+        initial={0} 
+        cant={AddToCart}/>
+        {(cart.length !== 0) ? (<Button 
+            size="small" 
+            variant="outlined"
+            component={RouterLink}
+            to={`/cart`}
+            >
+              <Typography variant="h6">
+                  Ir al carrito
+              </Typography>
+            </Button>) : null
         }
     </Card>
   )
