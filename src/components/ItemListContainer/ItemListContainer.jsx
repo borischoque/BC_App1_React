@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import functionPromiseFilter from '../../functions/functionPromise';
 import ItemList from '../ItemList/ItemList';
 import {useParams} from "react-router-dom";
-import { productos } from '../../functions/listProducts';
+import {collection, getDocs, getFirestore,query,where} from 'firebase/firestore';
 
 const ItemListContainer = () => {
 
   const {categoryid} = useParams();
 
-  // const onAdd = (value) => {
-  //   console.log(`Se envia al carrito el valor ${value} Unidades para realizar la compra.`);
   // }
   // DEFINO EL ESTADO DE PRODUCTOS
   const [products, Setproducts] = useState([]);
   
-  const listaproductos = productos;
-
   useEffect(() => {
+    const db = getFirestore();
+    const selecction = collection(db, 'listaproductosBC');
 
-    functionPromiseFilter(listaproductos,1000,categoryid).then((res) => {
-      Setproducts(res)
-    }).catch((err) => {
-      console.log(err);
+    if (!categoryid){
+      getDocs(selecction).then( (res) => {
+        Setproducts(res.docs.map(item => ({id: item.id, ...item.data()})))
     })
-  }, [categoryid]);
+    }else{
+      const selecction2 = query(selecction, where('category','==',categoryid))
+      getDocs(selecction2).then( (res) => {
+
+        Setproducts(res.docs.map(item => ({id: item.id, ...item.data()})))
+    })
+    }
+
+}, [categoryid]);
   
   return (
     <ItemList listproductos={products}/>

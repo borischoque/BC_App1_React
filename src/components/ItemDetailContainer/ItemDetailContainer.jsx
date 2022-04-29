@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import functionPromiseFind from '../../functions/functionPromiseFind';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import Grid from '@mui/material/Grid';
-import { productos } from '../../functions/listProducts';
 import { useParams } from 'react-router-dom';
+import {doc, getDoc, getFirestore} from 'firebase/firestore';
 
 const ItemDetailContainer = () => {
 
@@ -12,16 +11,18 @@ const ItemDetailContainer = () => {
   // DEFINO EL ESTADO DE PRODUCTOS
   const [productItem, SetproductItem] = useState({});
 
-  const listaproductos = productos;
-  
   useEffect(() => {
-    functionPromiseFind(listaproductos,1000,id).then((res) => {
-      SetproductItem(res)
-    }).catch((err) => {
-      console.log(err);
+    const db = getFirestore();
+
+    const selecction = doc(db, 'listaproductosBC', id);
+
+    getDoc(selecction).then( (res) => {
+        const union = {id: res.id, ...res.data()};
+        SetproductItem(union);
     })
-  }, [id]);
-  
+
+}, [id]);
+
   return (
     <Grid container spacing={1}>
         <Grid sx={{ mx:'auto'}} key={productItem.id} item xs={12} lg={4} md={6} sm={6}>

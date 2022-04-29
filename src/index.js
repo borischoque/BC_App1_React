@@ -4,6 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { initializeApp } from "firebase/app";
+const firebaseConfig = {
+  apiKey: "AIzaSyAZy994UakqNMEDvxDCVXMA1JkJw-__ZqE",
+  authDomain: "bcecommerce-62558.firebaseapp.com",
+  projectId: "bcecommerce-62558",
+  storageBucket: "bcecommerce-62558.appspot.com",
+  messagingSenderId: "769536910192",
+  appId: "1:769536910192:web:f72fdc02958ac40a8ee5b5"
+};
+initializeApp(firebaseConfig);
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
