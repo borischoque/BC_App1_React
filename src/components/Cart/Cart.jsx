@@ -30,7 +30,7 @@ const Cart = () => {
               <Typography variant="h6">
                   VER LISTA DE PRODUCTOS
               </Typography>
-            </Button>
+    </Button>
     </>
   )
 
@@ -79,7 +79,12 @@ const Cart = () => {
         </Button>
       </List>
     )}
-    <Button onClick={ () => buyAll()} size="small" variant="contained">
+    <Button
+    size="small" 
+    variant="contained"
+    component={RouterLink}
+    to={`/datos`}
+    >
       <Typography variant="h6">
           FINALIZAR COMPRA
       </Typography>
