@@ -2,11 +2,20 @@
 
 ## **Descripción:**
 
-En este proyecto se aplica React Js para la creación de un e-commerce.
+En este proyecto se aplica React Js para la creación de un e-commerce (etapa preliminar).
 
 ## **Resumen:**
 
 En esta primer etapa, el proyecto consta de una web dedicada a la oferta/ventas de productos, donde se indica una clasificación según tipo de producto ofrecido.
+
+## **Work - Flow:**
+
+![](BCVENTAS_GIF.gif)
+
+## **Librerias**
+
+1. Material UI
+2. React Router Dom
 
 # Getting Started with Create React App
 

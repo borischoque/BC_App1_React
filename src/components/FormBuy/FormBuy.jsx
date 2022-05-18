@@ -107,7 +107,7 @@ function FormBuy() {
         TU CÓDIGO DE REGISTRO
          DE COMPRA ES:
          {checkOut}
-        </Typography>   
+        </Typography>  
         }
     </Box>
   );
